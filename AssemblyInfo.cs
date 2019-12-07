@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Imperial Department of Military Research")]
 [assembly: AssemblyProduct("IDMR Mission Converter")]
-[assembly: AssemblyCopyright("Copyright © Michael Gaisser 2005-2019")]
+[assembly: AssemblyCopyright("Copyright  Michael Gaisser 2005-2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

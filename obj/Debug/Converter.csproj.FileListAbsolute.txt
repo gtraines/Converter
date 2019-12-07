@@ -1,0 +1,7 @@
+C:\Source\Converter\bin\Converter.exe
+C:\Source\Converter\bin\Converter.pdb
+C:\Source\Converter\obj\Debug\Converter.csprojResolveAssemblyReference.cache
+C:\Source\Converter\obj\Debug\Idmr.Converter.MainForm.resources
+C:\Source\Converter\obj\Debug\Converter.csproj.GenerateResource.Cache
+C:\Source\Converter\obj\Debug\Converter.exe
+C:\Source\Converter\obj\Debug\Converter.pdb
