@@ -1,6 +1,8 @@
 # Compilation stuff
 obj/**
 bin/**
+.vscode/**
+.vs/**
 
 # Logs
 logs
