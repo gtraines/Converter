@@ -1573,10 +1573,29 @@ namespace Idmr.Converter
 		{
 			//XWA time value, if 20 (decimal) or under is exact seconds.
 			//21 = 25 sec, 22 = 30 sec, etc.
+			
 			int seconds = xvtTime * 5;
-			if(seconds <= 20)
-				return Convert.ToByte(seconds);
-			return Convert.ToByte(((seconds - 20) / 5) + 20);
+			int scaledSeconds;
+			try
+			{
+				if(seconds <= 20)
+				{
+					scaledSeconds = seconds;
+				}
+				else 
+				{
+ 					scaledSeconds = ((seconds - 20) / 5) + 20;
+					if (scaledSeconds < 0)
+						scaledSeconds = 0;
+				}
+				return Convert.ToByte(scaledSeconds);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(
+					$"Error convering XvT time to XWA time: XvT value:{xvtTime} Scaled time: {seconds}", )
+				throw;
+			}
 		}
 		void XvTToXWA_ConvertOrderTime(FileStream XvT, FileStream XWA)
 		{
