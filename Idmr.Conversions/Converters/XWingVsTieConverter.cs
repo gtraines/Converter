@@ -24,16 +24,15 @@ namespace Idmr.Conversions.Converters
 
 			context.WriteToTargetBuffer(1 , 8);
 			context.WriteToTargetBuffer(1, 11); //unknowns
-
-			streams.TargetStream.Position = 100;
-			streams.TargetWriter.Write(System.Text.Encoding.ASCII.GetBytes("The Final Frontier"));    //make a nice Region name :P
-			streams.TargetStream.Position = 0x23AC; 
-			context.WriteToTargetBuffer(6);                        //starting hangar
-			streams.TargetStream.Position++;
+			context.WriteToTargetBuffer(Encoding.ASCII.GetBytes("The Final Frontier"), 100);  //make a nice Region name :P
+			context.WriteToTargetBuffer(6, 0x23A);  //starting hangar
+			context.TargetCursor++;
 			context.SourceCursor = 0x66; 
-			streams.TargetWriter.Write(streams.SourceReader.ReadByte());       //time limit (minutes)
-			streams.TargetStream.Position = 0x23B3; context.WriteToTargetBuffer(0x62);                     //unknown
-			streams.TargetStream.Position = 0x23F0;
+			context.WriteToTarget(context.ReadByte());       //time limit (minutes)
+			
+			context.WriteToTargetBuffer(0x62, 0x23B3);                     //unknown
+
+			context.TargetCursor = 0x23F0;
 
 			//[JB] Jumping ahead to get the briefing locations before we load in the FGs.
 			long brief1BlockStart = 0xA4 + (0x562 * FGs) + (0x74 * Messages) + 0x500 + 0x1306;  //FGs, messages, teams, global goals
@@ -42,7 +41,7 @@ namespace Idmr.Conversions.Converters
 			long brief1EndSize = 0;
 			for (var idx = 0; idx < 64; idx++)   //32 tags + 32 strings
 			{
-				int len = streams.SourceReader.ReadInt16();
+				int len = context.ReadSourceInt16();
 				brief1StringSize += 2;
 				context.SourceCursor += len;
 				brief1StringSize += len;
@@ -62,8 +61,8 @@ namespace Idmr.Conversions.Converters
 			for (var i = 0; i < FGs; i++)
 			{
 				XvTPos = context.SourceCursor;
-				XWAPos = streams.TargetStream.Position;
-				streams.TargetWriter.Write(streams.SourceReader.ReadBytes(20));   //name
+				XWAPos = context.TargetCursor;
+				context.ConversionStreams.TargetWriter.Write(context.ConversionStreams.SourceReader.ReadBytes(20));   //name
 				byte[] d1 = new byte[2];
 				byte[] d2 = new byte[2];
 				byte[] buffer = new byte[4];

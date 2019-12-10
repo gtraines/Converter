@@ -66,5 +66,13 @@ namespace Idmr.Conversions
             ConversionStreams.TargetWriter.Write(shortToWrite);
         }
 
+        public void WriteToTargetBuffer(byte[] valueToWrite, long cursorPosition)
+        {
+            TargetCursor = cursorPosition;
+            ConversionStreams.TargetStream.Write(
+                valueToWrite, 
+                0, 
+                valueToWrite.Length);
+        }
     }
 }
