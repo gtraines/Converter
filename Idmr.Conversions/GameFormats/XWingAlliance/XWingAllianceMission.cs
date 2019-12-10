@@ -7,6 +7,11 @@ namespace Idmr.Conversions.GameFormats.XWingAlliance
 {
     public class XWingAllianceMission : MissionBase
     {
+        public override IByteSegment[] ByteSegments { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
+        public override bool IngestSegments(ConversionContext context)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

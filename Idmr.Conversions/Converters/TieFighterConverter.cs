@@ -461,12 +461,6 @@ namespace Idmr.Conversions.Converters
 
 		//TODO: Some of the delays may still be off due to different conversion factors
 
-		protected bool ToXvT(ConversionStreams streams)
-		{
-			
-
-			MessageBox.Show("Conversion completed", "Finished");
-		}
 
 		void TIE2XWA(string fromFileName, string toFileName)
 		{

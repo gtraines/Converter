@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace Idmr.Conversions.GameFormats.MissionAbstractions.Segments
@@ -11,6 +9,11 @@ namespace Idmr.Conversions.GameFormats.MissionAbstractions.Segments
         public abstract long ByteOffset { get; protected set; }
         public abstract long ByteCount { get; protected set; }
         public byte[] ByteContent { get; protected set; }
+
+        public short ToInt16(int startIdx = 0)
+        {
+            return BitConverter.ToInt16(ByteContent, startIdx);
+        }
         public virtual void Ingest(ConversionContext context)
         {
             context.SourceCursor = ByteOffset;

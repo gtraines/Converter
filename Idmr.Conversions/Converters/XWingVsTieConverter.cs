@@ -18,20 +18,20 @@ namespace Idmr.Conversions.Converters
 			//short i, j;
 			short FGs = context.ReadSourceInt16();
 			short Messages = context.ReadSourceInt16();
-			streams.TargetWriter.Write((short)(FGs + 2)); // [JB] Modified to +2 since generated skirmish files have two backdrops for ambient lighting
-			streams.TargetWriter.Write(Messages);
+			context.WriteToTarget((short)(FGs + 2)); // [JB] Modified to +2 since generated skirmish files have two backdrops for ambient lighting
+			context.WriteToTarget(Messages);
 			fgIcons = new short[FGs];
 
-			streams.TargetStream.Position = 8;
-			context.WriteToTargetBuffer(1); 
-			streams.TargetStream.Position = 11; 
-			context.WriteToTargetBuffer(1);        //unknowns
+			context.WriteToTargetBuffer(1 , 8);
+			context.WriteToTargetBuffer(1, 11); //unknowns
 
 			streams.TargetStream.Position = 100;
 			streams.TargetWriter.Write(System.Text.Encoding.ASCII.GetBytes("The Final Frontier"));    //make a nice Region name :P
-			streams.TargetStream.Position = 0x23AC; context.WriteToTargetBuffer(6);                        //starting hangar
+			streams.TargetStream.Position = 0x23AC; 
+			context.WriteToTargetBuffer(6);                        //starting hangar
 			streams.TargetStream.Position++;
-			context.SourceCursor = 0x66; streams.TargetWriter.Write(streams.SourceReader.ReadByte());       //time limit (minutes)
+			context.SourceCursor = 0x66; 
+			streams.TargetWriter.Write(streams.SourceReader.ReadByte());       //time limit (minutes)
 			streams.TargetStream.Position = 0x23B3; context.WriteToTargetBuffer(0x62);                     //unknown
 			streams.TargetStream.Position = 0x23F0;
 

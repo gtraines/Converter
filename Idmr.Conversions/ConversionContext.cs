@@ -49,5 +49,22 @@ namespace Idmr.Conversions
                 ConversionStreams.TargetStream.Position++;
             }
         }
+
+        public void WriteToTargetBuffer(Int32 valueToWrite, long cursorPosition)
+        {
+            ConversionStreams.TargetStream.Position = cursorPosition;
+            WriteToTargetBuffer(valueToWrite);
+        }
+
+        public void WriteToTargetBuffer(Int32 valueToWrite)
+        {
+            ConversionStreams.TargetWriter.Write(valueToWrite);
+        }
+
+        public void WriteToTarget(short shortToWrite)
+        {
+            ConversionStreams.TargetWriter.Write(shortToWrite);
+        }
+
     }
 }
