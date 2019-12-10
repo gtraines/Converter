@@ -1,0 +1,14 @@
+C:\Source\Converter\ConverterCli\bin\Debug\netcoreapp3.1\ConverterCli.exe
+C:\Source\Converter\ConverterCli\bin\Debug\netcoreapp3.1\ConverterCli.deps.json
+C:\Source\Converter\ConverterCli\bin\Debug\netcoreapp3.1\ConverterCli.runtimeconfig.json
+C:\Source\Converter\ConverterCli\bin\Debug\netcoreapp3.1\ConverterCli.runtimeconfig.dev.json
+C:\Source\Converter\ConverterCli\bin\Debug\netcoreapp3.1\ConverterCli.dll
+C:\Source\Converter\ConverterCli\bin\Debug\netcoreapp3.1\ConverterCli.pdb
+C:\Source\Converter\ConverterCli\bin\Debug\netcoreapp3.1\Idmr.Conversions.dll
+C:\Source\Converter\ConverterCli\bin\Debug\netcoreapp3.1\Idmr.Conversions.pdb
+C:\Source\Converter\ConverterCli\obj\Debug\netcoreapp3.1\ConverterCli.csprojAssemblyReference.cache
+C:\Source\Converter\ConverterCli\obj\Debug\netcoreapp3.1\ConverterCli.AssemblyInfoInputs.cache
+C:\Source\Converter\ConverterCli\obj\Debug\netcoreapp3.1\ConverterCli.AssemblyInfo.cs
+C:\Source\Converter\ConverterCli\obj\Debug\netcoreapp3.1\ConverterCli.csproj.CopyComplete
+C:\Source\Converter\ConverterCli\obj\Debug\netcoreapp3.1\ConverterCli.dll
+C:\Source\Converter\ConverterCli\obj\Debug\netcoreapp3.1\ConverterCli.pdb

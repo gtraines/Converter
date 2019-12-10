@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Idmr.Conversions.GameFormats 
 {
@@ -11,16 +13,11 @@ namespace Idmr.Conversions.GameFormats
 
         public abstract int InitialByteVal { get; }
 
-        public Dictionary<Game, object> Conversions { get; set; }
+        public Dictionary<GameType, object> Conversions { get; set; }
 
-        public ToGameFormat(Games game, ByteStream fromStream, ByteStream toStream) 
+        public void ToGameFormat(GameType game, Stream fromStream, Stream toStream) 
         {
             
         }
-
-
-
-
-
     }
 }

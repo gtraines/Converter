@@ -107,6 +107,12 @@
       <DependentUpon>Converter.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Idmr.Conversions\Idmr.Conversions.csproj">
+      <Project>{9775327a-d746-47ec-9c32-c2bc0db71479}</Project>
+      <Name>Idmr.Conversions</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)//Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

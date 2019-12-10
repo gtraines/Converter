@@ -8,7 +8,7 @@ namespace Idmr.Conversions
     {
         public static bool ValidateInputFileHead(string inputFileName, GameType toGameType) 
         {
-            var inputGameType = GetGameTypeFromFile(inputFileName, toGameType);
+            var inputGameType = GetGameTypeFromFile(inputFileName);
 
             if (toGameType == inputGameType) 
             {
@@ -39,18 +39,12 @@ namespace Idmr.Conversions
                     case (int)GameType.XWA: 
                         throw new ValidationException("Cannot create a new XWA mission from an XWA file (it's already done!)");
                         break;
-                    case default:
+                    default:
                         throw new Exception("Invalid file");
                 }
 
                 return (GameType)headByte;
             }
-        }
-
-        public static bool CreateOutputFile(string outputFileName, Stream outStream, GameType game = GameType.XWA)
-        {
-            return true;
-            
         }
     }
 }

@@ -1,0 +1,8 @@
+C:\Source\Converter\Idmr.Conversions\bin\Debug\netstandard2.0\Idmr.Conversions.deps.json
+C:\Source\Converter\Idmr.Conversions\bin\Debug\netstandard2.0\Idmr.Conversions.dll
+C:\Source\Converter\Idmr.Conversions\bin\Debug\netstandard2.0\Idmr.Conversions.pdb
+C:\Source\Converter\Idmr.Conversions\obj\Debug\netstandard2.0\Idmr.Conversions.csprojAssemblyReference.cache
+C:\Source\Converter\Idmr.Conversions\obj\Debug\netstandard2.0\Idmr.Conversions.AssemblyInfoInputs.cache
+C:\Source\Converter\Idmr.Conversions\obj\Debug\netstandard2.0\Idmr.Conversions.AssemblyInfo.cs
+C:\Source\Converter\Idmr.Conversions\obj\Debug\netstandard2.0\Idmr.Conversions.dll
+C:\Source\Converter\Idmr.Conversions\obj\Debug\netstandard2.0\Idmr.Conversions.pdb

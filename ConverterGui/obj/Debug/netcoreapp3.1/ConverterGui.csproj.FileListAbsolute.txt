@@ -1,0 +1,11 @@
+C:\Source\Converter\ConverterGui\bin\Debug\netcoreapp3.1\ConverterGui.exe
+C:\Source\Converter\ConverterGui\bin\Debug\netcoreapp3.1\ConverterGui.deps.json
+C:\Source\Converter\ConverterGui\bin\Debug\netcoreapp3.1\ConverterGui.runtimeconfig.json
+C:\Source\Converter\ConverterGui\bin\Debug\netcoreapp3.1\ConverterGui.runtimeconfig.dev.json
+C:\Source\Converter\ConverterGui\bin\Debug\netcoreapp3.1\ConverterGui.dll
+C:\Source\Converter\ConverterGui\bin\Debug\netcoreapp3.1\ConverterGui.pdb
+C:\Source\Converter\ConverterGui\obj\Debug\netcoreapp3.1\ConverterGui.csprojAssemblyReference.cache
+C:\Source\Converter\ConverterGui\obj\Debug\netcoreapp3.1\ConverterGui.AssemblyInfoInputs.cache
+C:\Source\Converter\ConverterGui\obj\Debug\netcoreapp3.1\ConverterGui.AssemblyInfo.cs
+C:\Source\Converter\ConverterGui\obj\Debug\netcoreapp3.1\ConverterGui.dll
+C:\Source\Converter\ConverterGui\obj\Debug\netcoreapp3.1\ConverterGui.pdb
