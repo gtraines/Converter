@@ -1,6 +1,8 @@
 ﻿using Idmr.Conversions.Converters;
+using Idmr.Conversions.GameFormats.XvT;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Idmr.Conversions
@@ -14,7 +16,10 @@ namespace Idmr.Conversions
 
         public ConversionOptions ConversionOptions { get; set; }
         public ConversionStreams ConversionStreams { get; set; }
-        
+        public FileStream SourceStream => ConversionStreams.SourceStream;
+        public FileStream TargetStream => ConversionStreams.TargetStream;
+        public BinaryWriter TargetWriter => ConversionStreams.TargetWriter;
+
         public long SourceCursor
         {
             get => ConversionStreams.SourceStream.Position;
@@ -34,6 +39,11 @@ namespace Idmr.Conversions
         public byte ReadByte()
         {
             return ConversionStreams.SourceReader.ReadByte();
+        }
+
+        public byte[] ReadBytes(int count)
+        {
+            return ConversionStreams.SourceReader.ReadBytes(count);
         }
 
         public void WriteToTargetBuffer(byte byteToWrite)
