@@ -6,13 +6,17 @@ namespace Idmr.Conversions.GameFormats.XvT
 {
     public class XvTFlightGroupDesignation
     {
+        //xvt  input   8 chars, [0] = team, [1..3] text of role.  EX: "2MIS", repeat for role2
+        //xwa  output  4 bytes, [0] = role1 enabled, [1] = role2 enabled, [2] = role1 enum, [3] = role2 enum
         public XvTFlightGroupDesignation(byte[] sourceBytes)
         {
             if (sourceBytes.Length != 8)
             {
                 throw new ArgumentOutOfRangeException("Source bytes must be an array of length 8");
             }
-            
+
+            //Get the role first so that if the team is set to all,
+            // both teams can be assigned the same role.
             var xvtInputAsString = Encoding.ASCII.GetString(sourceBytes).ToUpper();
             FlightGroupFaction1 = xvtInputAsString[0];
             RoleText1 = xvtInputAsString.Substring(1, 3);
@@ -35,6 +39,49 @@ namespace Idmr.Conversions.GameFormats.XvT
             results[2] = TryGetXwaRole(RoleText1);
             results[3] = TryGetXwaRole(RoleText2);
 
+            switch (FlightGroupFaction1)
+            {
+                case '1': results[0] = 0x0; break;
+                case '2': results[0] = 0x1; break;
+                case '3': results[0] = 0x2; break;
+                case '4': results[0] = 0x3; break;
+                case 'A': 
+                    results[0] = 0xA; 
+                    results[1] = 0xB; 
+                    results[2] = TryGetXwaRole(RoleText1); 
+                    results[3] = TryGetXwaRole(RoleText1); 
+                    break;  //~MG: the original single-designation version of this function had 0xB for 'A' and 0xA for 'H'. I have this value as being a bool, need to look into it
+                case 'H': 
+                    results[0] = 0xA; 
+                    results[1] = 0xB; 
+                    results[2] = TryGetXwaRole(RoleText1); 
+                    results[3] = TryGetXwaRole(RoleText1); 
+                    break; //No idea (what 'H' means)
+                default: results[0] = 0x0; break;
+            }
+
+            switch (FlightGroupFaction2)
+            {
+                case '1': results[1] = 0x0; break;
+                case '2': results[1] = 0x1; break;
+                case '3': results[1] = 0x2; break;
+                case '4': results[1] = 0x3; break;
+                case 'A':
+                    results[0] = 0xA;
+                    results[1] = 0xB;
+                    results[2] = TryGetXwaRole(RoleText2);
+                    results[3] = TryGetXwaRole(RoleText2);
+                    break;  //~MG: the original single-designation version of this function had 0xB for 'A' and 0xA for 'H'. I have this value as being a bool, need to look into it
+                case 'H':
+                    results[0] = 0xA;
+                    results[1] = 0xB;
+                    results[2] = TryGetXwaRole(RoleText2);
+                    results[3] = TryGetXwaRole(RoleText2);
+                    break; //No idea (what 'H' means)
+                default: results[1] = 0x0; break;
+            }
+
+            return results;
         }
 
         public static byte TryGetXwaRole(string xvtSourceRole)

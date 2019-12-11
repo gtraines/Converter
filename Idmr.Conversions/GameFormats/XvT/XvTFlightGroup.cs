@@ -12,6 +12,10 @@ namespace Idmr.Conversions.GameFormats.XvT
 		int PlayerCraft = 0; //[JB] for combat engagements
 		public List<XvTMessage> Messages { get; set; }
 		public byte[] FlightGroupName { get; set; }
+		public XvTFlightGroupDesignation FlightGroupDesignation { get; set; }
+
+		public byte[] XwaFlightGroupDesignation;
+
 		protected static byte[] GetFlightGroupName(ConversionContext context)
 		{
 			return context.ReadBytes(20);
@@ -30,23 +34,29 @@ namespace Idmr.Conversions.GameFormats.XvT
 			byte[] d1 = new byte[2];
 			byte[] d2 = new byte[2];
 			byte[] buffer = new byte[4];
-			byte[] buffer2 = new byte[8];
-			byte[] des2 = new byte[4];
+			byte[] flightGroupDesignationBytes = new byte[8];
+			
+			context.SourceStream.Read(flightGroupDesignationBytes, 0, 8);
+			FlightGroupDesignation = new XvTFlightGroupDesignation(flightGroupDesignationBytes);
+			XwaFlightGroupDesignation = FlightGroupDesignation.ToXWingAllianceDesignationBytes();
 
-			context.SourceStream.Read(buffer2, 0, 8);
-			ConvertDesignations(buffer2, des2);
+			context.WriteToTargetBuffer(XwaFlightGroupDesignation[0]); 
+			context.WriteToTargetBuffer(XwaFlightGroupDesignation[1]);
+			context.WriteToTargetBuffer(XwaFlightGroupDesignation[2]); 
+			context.WriteToTargetBuffer(XwaFlightGroupDesignation[3]);
+
 			context.SourceCursor -= 8;
-			context.WriteToTargetBuffer(des2[0]); context.WriteToTargetBuffer(des2[1]);
-			context.WriteToTargetBuffer(des2[2]); context.WriteToTargetBuffer(des2[3]);
-			streams.TargetStream.Position++;       //Skip unknown
+			context.TargetStream.Position++;       //Skip unknown
+
 			context.WriteToTargetBuffer(255); //Global cargos set to none
 			context.WriteToTargetBuffer(255);
-			streams.TargetStream.Position = XWAPos + 40;
+
+			context.TargetStream.Position = StartXWAPos + 40;
 			context.SourceCursor += 20;
-			streams.TargetWriter.Write(streams.SourceReader.ReadBytes(40));   //Cargo & Special
-			streams.TargetStream.Position = XWAPos + 0x69;
-			streams.TargetWriter.Write(streams.SourceReader.ReadBytes(30));           //SC ship# -> Arrival Difficulty
-			context.SourceCursor = XvTPos + 0x64;
+			context.TargetWriter.Write(context.ReadBytes(40));   //Cargo & Special
+			context.TargetStream.Position = StartXWAPos + 0x69;
+			context.TargetWriter.Write(context.ReadBytes(30));           //SC ship# -> Arrival Difficulty
+			context.SourceCursor = StartXWAPos + 0x64;
 			// [JB] Modified
 			if (!isMultiplayer)
 			{
