@@ -38,7 +38,10 @@ namespace Idmr.Conversions.GameFormats.XvT
             results[1] = 0xFF;
             results[2] = TryGetXwaRole(RoleText1);
             results[3] = TryGetXwaRole(RoleText2);
-
+            //~MG: 
+            // the original single-designation version of this function had 
+            // 0xB for 'A' and 0xA for 'H'. 
+            // I have this value as being a bool, need to look into it
             switch (FlightGroupFaction1)
             {
                 case '1': results[0] = 0x0; break;
@@ -50,13 +53,13 @@ namespace Idmr.Conversions.GameFormats.XvT
                     results[1] = 0xB; 
                     results[2] = TryGetXwaRole(RoleText1); 
                     results[3] = TryGetXwaRole(RoleText1); 
-                    break;  //~MG: the original single-designation version of this function had 0xB for 'A' and 0xA for 'H'. I have this value as being a bool, need to look into it
+                    break;  
                 case 'H': 
                     results[0] = 0xA; 
                     results[1] = 0xB; 
                     results[2] = TryGetXwaRole(RoleText1); 
                     results[3] = TryGetXwaRole(RoleText1); 
-                    break; //No idea (what 'H' means)
+                    break; //No idea (what 'H' means)                    
                 default: results[0] = 0x0; break;
             }
 

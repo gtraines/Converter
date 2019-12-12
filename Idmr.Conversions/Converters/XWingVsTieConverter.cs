@@ -21,7 +21,7 @@ namespace Idmr.Conversions.Converters
 			context.WriteToTargetBuffer(18, true);
 			context.SourceCursor = 2;
 			//short i, j;
-			short FGs = context.ReadSourceInt16();
+			context.FlightGroupCount = context.ReadSourceInt16();
 			short Messages = context.ReadSourceInt16();
 			context.WriteToTarget((short)(FGs + 2)); // [JB] Modified to +2 since generated skirmish files have two backdrops for ambient lighting
 			context.WriteToTarget(Messages);
@@ -40,8 +40,8 @@ namespace Idmr.Conversions.Converters
 			context.TargetCursor = 0x23F0;
 
 			//[JB] Jumping ahead to get the briefing locations before we load in the FGs.
-			xvtBriefingBlock = new XvTBriefingBlock(FGs, Messages, context);
-			xvtFlightGroupBlock = new XvTFlightGroupsBlock(FGs, context);
+			xvtBriefingBlock = new XvTBriefingBlock(context.FlightGroupCount, Messages, context);
+			xvtFlightGroupBlock = new XvTFlightGroupsBlock(context.FlightGroupCount, context);
 
 			//[JB] Now that flight groups are done, check for player count and patch in skirmish mode
 			if (isMultiplayer && PlayerCraft > 1)
@@ -226,7 +226,7 @@ namespace Idmr.Conversions.Converters
 					i += (short)(2 * BRF[briefingLength]);   // increase length counter by skipped vars
 				}
 			}
-			streams.TargetStream.Position = 0x8960 + (FGs + 2) * 0xE3E + Messages * 0xA2;  //[JB] FGs+2
+			streams.TargetStream.Position = 0x8960 + (context.FlightGroupCount + 2) * 0xE3E + Messages * 0xA2;  //[JB] FGs+2
 			context.WriteToTargetBuffer(1);                   //show the non-existant briefing
 			streams.TargetStream.Position += 9;
 			#endregion Briefing
@@ -340,7 +340,7 @@ namespace Idmr.Conversions.Converters
 					context.SourceCursor += streams.SourceReader.ReadInt16();
 			}
 			#region FG Goal strings
-			for (var i = 0; i < FGs; i++)
+			for (var i = 0; i < context.FlightGroupCount; i++)
 			{
 				for (briefingLength = 0; briefingLength < 24; briefingLength++)  //8 goals * 3 strings
 				{

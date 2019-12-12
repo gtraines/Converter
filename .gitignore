@@ -1,5 +1,9 @@
 # Compilation stuff
+
+obj
 obj/**
+**/obj
+bin
 bin/**
 .vscode/**
 .vs/**

@@ -19,7 +19,7 @@ namespace Idmr.Conversions
         public FileStream SourceStream => ConversionStreams.SourceStream;
         public FileStream TargetStream => ConversionStreams.TargetStream;
         public BinaryWriter TargetWriter => ConversionStreams.TargetWriter;
-
+        public bool IsMultiplayerMission { get; set; }
         public long SourceCursor
         {
             get => ConversionStreams.SourceStream.Position;
@@ -31,10 +31,19 @@ namespace Idmr.Conversions
             get => ConversionStreams.TargetStream.Position;
             set => ConversionStreams.TargetStream.Position = value;
         }
+        public int FlightGroupCount { get; set; }
 
+        public int ReadSourceInt32()
+        {
+            return ConversionStreams.SourceReader.ReadInt32();
+        }
         public short ReadSourceInt16()
         {
             return ConversionStreams.SourceReader.ReadInt16();
+        }
+        public long ReadSourceInt64()
+        {
+            return ConversionStreams.SourceReader.ReadInt64();
         }
         public byte ReadByte()
         {
